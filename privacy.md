@@ -1,6 +1,6 @@
 # Privacy Policy — College Buddy: Attendance
 
-**Last updated: 14 August 2026**
+**Last updated: 15 August 2026**
 
 **Applies to:** College Buddy for iOS (App Store) and College Buddy for Android (Google Play).
 
@@ -79,9 +79,14 @@ Google acts as an **independent data controller** for this information. We never
 
 ### Consent in the EEA, UK and Switzerland
 
-**iOS** presents a Google User Messaging Platform consent message before personalised ads are served.
+**Both platforms** present a Google User Messaging Platform consent message before personalised ads are served, and the advertising SDK is not started until that choice has been made. If you decline, the SDK is never initialised and your advertising identifier is not read.
 
-**Android** does not currently present a consent message. Until it does, users in those regions should treat the Android app as unsuitable if they do not wish Google to process the data described above, and may either opt out of personalised ads at the OS level or upgrade to Pro to remove advertising completely. We intend to add an in-app consent message to the Android version.
+**Changing your mind.** Consent is not a one-time gate — you can revisit it whenever you like:
+
+- **Android** — Settings → **Ad privacy options**. The entry appears only where a consent message applies.
+- **iOS** — an in-app equivalent is not yet offered. You can use the system App Tracking Transparency control in iOS Settings, or upgrade to Pro to remove advertising entirely. We intend to add the in-app option.
+
+Pro users are not shown a consent message at all, because the advertising SDK never starts for them and there is nothing to consent to.
 
 ---
 
@@ -144,7 +149,7 @@ To manage or cancel:
 |---|---|---|---|
 | **Google AdMob** | Both | Advertising for free users | [policies.google.com/privacy](https://policies.google.com/privacy) |
 | **Google ML Kit** (bundled, on-device) | Both | Timetable text recognition | [policies.google.com/privacy](https://policies.google.com/privacy) |
-| **Google User Messaging Platform** | iOS | Consent collection in the EEA/UK/Switzerland | [policies.google.com/privacy](https://policies.google.com/privacy) |
+| **Google User Messaging Platform** | Both | Consent collection in the EEA/UK/Switzerland | [policies.google.com/privacy](https://policies.google.com/privacy) |
 | **Google Play Billing** | Android | Subscriptions and purchases | [policies.google.com/privacy](https://policies.google.com/privacy) |
 | **Google Play In-App Review** | Android | The optional "rate this app" prompt | [policies.google.com/privacy](https://policies.google.com/privacy) |
 | **Apple StoreKit** | iOS | Subscriptions and purchases | [apple.com/legal/privacy](https://www.apple.com/legal/privacy/) |
@@ -185,6 +190,7 @@ Because your data lives on your device, you control it directly:
 - **In the App** — Settings → **Reset Semester** permanently deletes all subjects, attendance history, timetable entries, assignments and planner tasks.
 - **Uninstalling** the App removes everything it stored.
 - **iOS only** — uninstalling also clears your class times from our push server on next launch; to remove them immediately, delete the App.
+- **Advertising consent** — on Android, withdraw it in Settings → **Ad privacy options**, which stops the advertising SDK being initialised.
 - **Advertising data held by Google** — reset or delete your Advertising ID in your device settings, and direct any further request to Google using the links in §3.
 
 We hold no server-side account for you, so there is no account for us to delete. If you would like written confirmation of any of the above, email us and we will respond within 7 days.
@@ -205,6 +211,7 @@ Because we hold almost nothing about you, most of these you can exercise yoursel
 
 - **Access / rectify** — your data is on your device; view and edit it directly in the App.
 - **Erase** — see §12.
+- **Withdraw consent to advertising** — on Android, Settings → **Ad privacy options**; withdrawing stops the advertising SDK being initialised on the next launch. On iOS, use the system App Tracking Transparency control, or upgrade to Pro.
 - **Object to advertising** — opt out of personalised ads in your device settings, decline the App Tracking Transparency prompt on iOS, or upgrade to Pro to remove ads entirely.
 - **Google-held ad data** — Google is an independent controller of the advertising data described in §3; direct requests about it to Google.
 
