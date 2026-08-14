@@ -1,20 +1,25 @@
 # Privacy Policy — College Buddy: Attendance
 
-**Last updated: 23 July 2026**
+**Last updated: 14 August 2026**
 
-This Privacy Policy explains how College Buddy ("the App", "we", "us") handles your information.
+**Applies to:** College Buddy for iOS (App Store) and College Buddy for Android (Google Play).
+
+This Privacy Policy explains how College Buddy ("the App", "we", "us") handles your information. Where the two platforms behave differently, the difference is marked **iOS only** or **Android only**.
 
 ## TL;DR
 
-Your attendance records, subjects, timetable, assignments and notes are yours. We do not have an account system, we never ask for your name or email, and we cannot read your data.
+Your attendance records, subjects, timetable, assignments and notes are yours. There is no account system, we never ask for your name or email, and we cannot read your data.
 
-Three things do leave your device, and you should know about them:
+What leaves your device:
 
-1. **Ads.** Free users see ads from Google AdMob. Google's advertising SDK collects your device's advertising identifier and similar data. **Pro subscribers see no ads at all** — the ad code is never even started for them.
-2. **Live Activity reminders.** So your class card can appear on the lock screen at the right moment, the App sends your upcoming class times and a device push token to our small server. No names, no attendance numbers.
-3. **iCloud sync.** Your data syncs across *your own* devices through Apple's iCloud. It goes to your private iCloud account, which we cannot access.
+1. **Ads.** Free users see ads from Google AdMob. Google's advertising SDK collects your device's advertising identifier and similar data. **Pro subscribers see no ads at all** — the ad code is never started for them.
+2. **Purchases.** Apple or Google processes payment and tells the App only whether Pro is active.
+3. **iCloud sync — iOS only.** Your data syncs across *your own* Apple devices through your private iCloud account, which we cannot access.
+4. **Live Activity reminders — iOS only.** Upcoming class times and a device push token go to our small server so the lock-screen card appears at the right moment. No names, no attendance numbers.
 
-Details on all three below.
+**On Android, items 3 and 4 do not happen at all.** There is no sync, no push server, and no first-party network connection of any kind.
+
+Nothing else is transmitted. Timetable scanning runs entirely on your device.
 
 ---
 
@@ -23,7 +28,7 @@ Details on all three below.
 We do not collect, request, or store:
 
 - Your name, email address, phone number, or any account credentials
-- Your attendance percentages or present/absent records (these never leave your device except into your own iCloud — see §6)
+- Your attendance percentages or present/absent records
 - Your location, contacts, microphone, or photo library
 - Any payment or card details
 
@@ -33,121 +38,135 @@ The App has no login, no user profile, and no first-party analytics. We do not b
 
 ## 2. Information Stored on Your Device
 
-The following is stored locally on your iPhone using Apple's standard storage APIs (`UserDefaults` and an App Group container):
+Stored locally, using each platform's standard storage:
+
+| | |
+|---|---|
+| **iOS** | `UserDefaults` and an App Group container |
+| **Android** | Jetpack DataStore, in the App's private storage |
+
+What is stored:
 
 - **Subjects** — names, attendance counts, thresholds, colours
 - **Timetable** — your weekly class schedule
 - **Assignments** — titles, due dates, status, notes
-- **Attendance history** — a log of present/absent entries
-- **Planner tasks** — your scheduled study tasks
-- **Settings** — notification time, subscription status cache
+- **Planner tasks** — titles, times, categories, repeat rules
+- **History** — a log of each Present/Absent you record
+- **Preferences** — reminder settings, default attendance requirement, whether Pro is active
 
-You can delete all of it at any time via **Settings → Reset Semester**, or by uninstalling the App.
-
----
-
-## 3. Advertising (Google AdMob)
-
-**This section applies to free users only. If you subscribe to Pro, no ads are requested, the advertising SDK is never started, and nothing in this section happens.**
-
-The free version of College Buddy shows ads supplied by **Google AdMob**, using the Google Mobile Ads SDK. Two formats are used:
-
-- **Interstitial** — an occasional full-screen ad when you return to the App.
-- **Rewarded** — an entirely optional ad you may choose to watch to unlock a single timetable scan. It never plays unless you tap to start it.
-
-To serve these ads, Google may collect and process:
-
-- Your device's **advertising identifier (IDFA)** and other device identifiers
-- Device and general location information derived from your **IP address**
-- **Ad interaction data** — which ads were shown, viewed, or tapped
-- Diagnostic data such as crash and performance information
-
-This data is used by Google for ad delivery, ad measurement, personalisation, and fraud prevention. Google acts as an independent controller of this data. Its handling is governed by:
-
-- [Google Privacy Policy](https://policies.google.com/privacy)
-- [How Google uses information from sites or apps that use our services](https://policies.google.com/technologies/partner-sites)
-
-### Your controls
-
-- **App Tracking Transparency.** On first use, iOS asks whether College Buddy may track you across other companies' apps and websites. If you decline, the advertising identifier is not available for tracking. You can change this any time in **iPhone Settings → Privacy & Security → Tracking**.
-- **EEA, UK and Switzerland.** Before any ad is requested, we show a Google-certified consent message that lets you consent or refuse. You can withdraw consent at any time via the privacy options in the App.
-- **Remove ads entirely.** Upgrading to Pro removes all advertising permanently.
+This data never leaves your device except as described in §5 (iOS iCloud) and §6 (iOS Live Activities). **On Android it never leaves your device at all.**
 
 ---
 
-## 4. Live Activity Push Notifications (our server)
+## 3. Advertising (Free Users Only)
 
-To make a class Live Activity appear on your lock screen at the moment a class begins, the App communicates with a small server we operate (a Cloudflare Worker at `college-buddy-push.raaghavmehta.workers.dev`).
+The free version shows ads supplied by **Google AdMob**. To do this, Google's Mobile Ads SDK collects and processes:
 
-**What is sent**, each time you open the App:
+- Your device's **advertising identifier** — the Advertising ID on Android, or the IDFA on iOS
+- Device and network information such as model, operating system version, language, and coarse region
+- Ad interaction events — impressions and clicks
 
-- An **Apple push token** for Live Activities (a random device-scoped identifier issued by Apple)
-- Your **upcoming classes for the next 7 days** — subject name, subject colour, start time, end time
-- Your **time zone** and the App's bundle identifier
+Google acts as an **independent data controller** for this information. We never see it, and we cannot link it to your attendance data.
 
-**What is *not* sent:** your name, email, any account identifier, your attendance percentages, your present/absent history, your assignments, your planner tasks, or your notes.
+- Google's privacy policy: [policies.google.com/privacy](https://policies.google.com/privacy)
+- How Google uses data from apps that use its services: [policies.google.com/technologies/partner-sites](https://policies.google.com/technologies/partner-sites)
 
-This information exists solely so the server knows *when* to send a push. Each upload replaces the previous one entirely, so if you delete classes or use **Reset Semester**, the server's copy is cleared on your next app open. The push token is issued by Apple, is specific to your installation, and becomes invalid if you delete the App.
+**Android:** the App declares the `com.google.android.gms.permission.AD_ID` permission for this purpose. You can reset or delete your Advertising ID at any time in **Settings → Privacy → Ads**, which also lets you opt out of personalised advertising.
 
-Local class reminders (§5) do not involve this server at all.
+**iOS:** the App uses App Tracking Transparency. If you decline the prompt, the IDFA is not used.
 
----
+**Pro removes advertising entirely.** For Pro users the ads SDK is never initialised, so no advertising identifier is read.
 
-## 5. Notifications
+### Consent in the EEA, UK and Switzerland
 
-If you enable class reminders or attendance alerts, the App schedules **local notifications** on your device using Apple's `UserNotifications` framework. These are generated and delivered entirely by your iPhone — no server is involved.
+**iOS** presents a Google User Messaging Platform consent message before personalised ads are served.
 
-Lock-screen **Live Activities** may additionally be delivered by push, as described in §4.
-
-You can disable notifications at any time via **iPhone Settings → Notifications → College Buddy**, or inside the App under **Settings**.
-
----
-
-## 6. iCloud Sync
-
-Your **subjects, timetable, assignments, attendance history, and planner tasks** sync between your own Apple devices using Apple's iCloud key-value storage (`NSUbiquitousKeyValueStore`).
-
-This data goes to **your private iCloud account**, not to us. We have no ability to read, access, or recover it. It is governed by [Apple's Privacy Policy](https://www.apple.com/legal/privacy/). You can disable it in **iPhone Settings → your name → iCloud**.
+**Android** does not currently present a consent message. Until it does, users in those regions should treat the Android app as unsuitable if they do not wish Google to process the data described above, and may either opt out of personalised ads at the OS level or upgrade to Pro to remove advertising completely. We intend to add an in-app consent message to the Android version.
 
 ---
 
-## 7. Timetable Scanner (Camera and Photos)
+## 4. Timetable Scanning
 
-The Pro timetable scanner reads a printed timetable from your camera, photo library, or a PDF. **All text recognition happens on your device** using Apple's on-device Vision framework. The image and the recognised text are never uploaded to us or to any third party. The photo is discarded once you finish the import.
+The App can build your timetable from a photo or PDF you choose.
 
----
-
-## 8. Widgets and Apple Watch
-
-Home-screen widgets and the Apple Watch app read your subjects and timetable from the App Group container on your device. This code runs locally and transmits nothing.
-
----
-
-## 9. Subscriptions and In-App Purchases
-
-College Buddy offers optional Pro subscriptions and a one-time Lifetime unlock through Apple's StoreKit framework. When you make a purchase:
-
-- **Apple** processes the transaction. You enter your Apple ID and payment details into Apple's interface, not ours.
-- **We receive only** a verified receipt from Apple confirming whether you have an active subscription. It contains no name, email, payment details, or Apple ID.
-- The receipt is used solely to unlock Pro features and to switch off advertising.
-
-To manage or cancel, go to **iPhone Settings → tap your name → Subscriptions → College Buddy**. For refunds, visit [reportaproblem.apple.com](https://reportaproblem.apple.com).
+- The image is read using **Google ML Kit text recognition**, with the model **bundled inside the App**. Recognition happens **entirely on your device**.
+- The image is **not uploaded**, not sent to us, and not sent to Google.
+- The App requests no photo-library permission — you pick a single file through the system picker, and only that file is read.
+- Only the recognised class names and times are saved, and only if you tap to confirm the import.
 
 ---
 
-## 10. Third-Party Services
+## 5. iCloud Sync — iOS only
 
-College Buddy integrates:
+Your subjects, timetable, assignments and planner sync between *your own* Apple devices through Apple's iCloud (CloudKit private database). It is your iCloud account; we have no access. You can disable it in iOS Settings.
 
-| Service | Purpose | Privacy policy |
-|---|---|---|
-| **Google AdMob** (Google Mobile Ads SDK) | Advertising for free users | [policies.google.com/privacy](https://policies.google.com/privacy) |
-| **Google User Messaging Platform** | GDPR consent collection in the EEA/UK/Switzerland | [policies.google.com/privacy](https://policies.google.com/privacy) |
-| **Apple StoreKit** | Subscriptions and purchases | [apple.com/legal/privacy](https://www.apple.com/legal/privacy/) |
-| **Apple iCloud** | Sync across your own devices | [apple.com/legal/privacy](https://www.apple.com/legal/privacy/) |
-| **Apple Push Notification service + our Cloudflare Worker** | Lock-screen Live Activities | [cloudflare.com/privacypolicy](https://www.cloudflare.com/privacypolicy/) |
+**The Android app has no sync.** Data stays on the single device.
+
+---
+
+## 6. Live Activities and Notifications
+
+**iOS.** So a class card can appear on your lock screen at the right time, the App sends upcoming class times and an anonymous device push token to a small server we operate on Cloudflare Workers. It holds no name, email, attendance figures, or advertising identifier, and entries expire automatically.
+
+**Android.** Nothing equivalent happens. Class reminders and the in-class Present/Absent notification are produced by **local alarms scheduled on your device**. No push service, no server, no network connection. The App requests `POST_NOTIFICATIONS`, `SCHEDULE_EXACT_ALARM`, `RECEIVE_BOOT_COMPLETED` (to restore alarms after a restart) and `VIBRATE` solely for this.
+
+---
+
+## 7. Widgets, Watch and Home Screen
+
+Home-screen widgets — and, on iOS, the Apple Watch app — read your subjects and timetable from local storage. This code runs locally and transmits nothing.
+
+---
+
+## 8. Subscriptions and In-App Purchases
+
+College Buddy offers optional Pro subscriptions and a one-time Lifetime unlock.
+
+| | |
+|---|---|
+| **iOS** | Apple StoreKit |
+| **Android** | Google Play Billing |
+
+- **Apple or Google** processes the transaction. You enter your payment details into their interface, not ours.
+- **We receive only** a confirmation that an entitlement is active. It contains no name, email, payment details, or account ID.
+- It is used solely to unlock Pro features and switch off advertising.
+
+To manage or cancel:
+
+- **iOS** — Settings → your name → Subscriptions → College Buddy. Refunds: [reportaproblem.apple.com](https://reportaproblem.apple.com)
+- **Android** — Google Play → Menu → Payments & subscriptions → Subscriptions → College Buddy. Refunds: [support.google.com/googleplay](https://support.google.com/googleplay/answer/2479637)
+
+---
+
+## 9. Third-Party Services
+
+| Service | Platform | Purpose | Privacy policy |
+|---|---|---|---|
+| **Google AdMob** | Both | Advertising for free users | [policies.google.com/privacy](https://policies.google.com/privacy) |
+| **Google ML Kit** (bundled, on-device) | Both | Timetable text recognition | [policies.google.com/privacy](https://policies.google.com/privacy) |
+| **Google User Messaging Platform** | iOS | Consent collection in the EEA/UK/Switzerland | [policies.google.com/privacy](https://policies.google.com/privacy) |
+| **Google Play Billing** | Android | Subscriptions and purchases | [policies.google.com/privacy](https://policies.google.com/privacy) |
+| **Google Play In-App Review** | Android | The optional "rate this app" prompt | [policies.google.com/privacy](https://policies.google.com/privacy) |
+| **Apple StoreKit** | iOS | Subscriptions and purchases | [apple.com/legal/privacy](https://www.apple.com/legal/privacy/) |
+| **Apple iCloud** | iOS | Sync across your own devices | [apple.com/legal/privacy](https://www.apple.com/legal/privacy/) |
+| **Apple Push Notification service + our Cloudflare Worker** | iOS | Lock-screen Live Activities | [cloudflare.com/privacypolicy](https://www.cloudflare.com/privacypolicy/) |
 
 We do not integrate Firebase, Facebook, Mixpanel, AppsFlyer, Adjust, or any other analytics or attribution SDK.
+
+---
+
+## 10. Google Play Data Safety Summary
+
+For the Android app, this is what the Play Data safety declaration corresponds to:
+
+| Data type | Collected | Shared | Purpose | Optional? |
+|---|---|---|---|---|
+| **Device or other IDs** (Advertising ID) | Yes | Yes — with Google | Advertising | Yes — not collected for Pro users |
+| App activity, attendance, timetable, assignments | No | No | — | — |
+| Personal info, location, contacts, photos, files | No | No | — | — |
+| Financial info | No | No | Payment is handled entirely by Google Play | — |
+
+Data is **encrypted in transit** (all SDK traffic uses HTTPS/TLS). Users can request deletion as described in §12.
 
 ---
 
@@ -155,42 +174,55 @@ We do not integrate Firebase, Facebook, Mixpanel, AppsFlyer, Adjust, or any othe
 
 College Buddy is intended for college and university students. It is not directed at children under 13, and we do not knowingly collect personal information from them.
 
-Because the free version shows advertising that may use the advertising identifier, we recommend the App be used by those aged 13 and over (16 in some EEA countries). If you believe a child has used the App and you would like its data removed, deleting the App removes everything stored on the device; you may also contact us at the address below.
+Because the free version shows advertising that may use the advertising identifier, we recommend the App be used by those aged 13 and over (16 in some EEA countries). If you believe a child has used the App and you would like its data removed, uninstalling the App removes everything stored on the device; you may also contact us below.
 
 ---
 
-## 12. Data Security
+## 12. Deleting Your Data
 
-Data on your device is protected by Apple's iOS security model — device passcode, Face ID / Touch ID, and full-disk encryption. Data in transit to our push server and to Google is encrypted using HTTPS/TLS. We recommend keeping your iPhone updated.
+Because your data lives on your device, you control it directly:
+
+- **In the App** — Settings → **Reset Semester** permanently deletes all subjects, attendance history, timetable entries, assignments and planner tasks.
+- **Uninstalling** the App removes everything it stored.
+- **iOS only** — uninstalling also clears your class times from our push server on next launch; to remove them immediately, delete the App.
+- **Advertising data held by Google** — reset or delete your Advertising ID in your device settings, and direct any further request to Google using the links in §3.
+
+We hold no server-side account for you, so there is no account for us to delete. If you would like written confirmation of any of the above, email us and we will respond within 7 days.
 
 ---
 
-## 13. Your Rights
+## 13. Data Security
 
-If you are in the EU, UK, California, or another jurisdiction with data protection law, you have rights of access, rectification, erasure, restriction, and objection.
+Data on your device is protected by the platform's security model — device passcode or biometrics and full-disk encryption on both iOS and Android, plus Android's per-app private storage. All traffic to Google and (on iOS) to our push server is encrypted using HTTPS/TLS. We recommend keeping your device updated.
+
+---
+
+## 14. Your Rights
+
+If you are in the EU, UK, California, India, or another jurisdiction with data protection law, you have rights of access, rectification, erasure, restriction, and objection.
 
 Because we hold almost nothing about you, most of these you can exercise yourself:
 
-- **Access / rectify** — your data is on your device and in your own iCloud; you can view and edit it directly in the App.
-- **Erase** — use **Settings → Reset Semester**, or uninstall the App. This also clears your class times from our push server on next launch. To remove them immediately, delete the App.
-- **Object to advertising** — decline the App Tracking Transparency prompt, refuse consent in the EEA/UK/Switzerland message, or upgrade to Pro to remove ads entirely.
-- **Google-held ad data** — because Google is an independent controller of the advertising data described in §3, requests about that data should be directed to Google using the links in that section.
+- **Access / rectify** — your data is on your device; view and edit it directly in the App.
+- **Erase** — see §12.
+- **Object to advertising** — opt out of personalised ads in your device settings, decline the App Tracking Transparency prompt on iOS, or upgrade to Pro to remove ads entirely.
+- **Google-held ad data** — Google is an independent controller of the advertising data described in §3; direct requests about it to Google.
 
 For anything else, contact us below and we will respond within 7 days.
 
 ---
 
-## 14. Changes to This Policy
+## 15. Changes to This Policy
 
 If we change how the App handles data, we will update this Policy and the "Last updated" date. For material changes we will display a notice inside the App.
 
 ---
 
-## 15. Contact
+## 16. Contact
 
 For privacy questions or concerns, email:
 
-raaghav.mehta.36@gmail.com
+**raaghav.mehta.36@gmail.com**
 
 We'll respond within 7 days.
 
